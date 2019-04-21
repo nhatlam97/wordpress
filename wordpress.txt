@@ -1,0 +1,6 @@
+tai kho?n ngu?i dùng mysql:
+username: user
+pass:123456789
+ tai khoan wp
+user: admin
+pass:admin

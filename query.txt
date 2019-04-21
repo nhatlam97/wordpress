@@ -1,0 +1,51 @@
+	c?p nh?t apache: 
+sudo apt update
+	CÀI apache2
+sudo apt install apache2
+	kh?i d?ng l?i apace2
+sudo systemctl start apache2.service
+sudo systemctl enable apache2.service
+	ki?m  tra l?i phiên b?n apache2
+apache2 -v
+	cài mysql
+sudo apt-get install mysql-server
+	T?O CSDL
+sudo mysql -u root -p
+CREATE DATABASE wordpress
+	t?o user
+CREATE USER 'user'@'localhost' IDENTIFIED BY '123456789';
+	 c?p quy?n cho user
+GRANT ALL ON wordpress.* TO 'user'@'localhost' IDENTIFIED BY '123456789' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+EXIT;	
+	CÀI Ð?T PHP
+sudo apt-get -y install php7.2
+	T?O T?P Ð? KI?M TRA
+sudo nano /var/www/html/info.php
+ <?php
+phpinfo();
+	reset lai apache
+sudo systemctl restart apache2
+ctrl s de luu ctrl x d? thoat
+		CÀI Ð?T WP
+cd /tmp && wget https://wordpress.org/latest.tar.gz
+tar -zxvf latest.tar.gz
+sudo mv wordpress /var/www/html/wordpress
+	Ð?T QUY?N CHO WP HO?T Ð?NG
+sudo chown -R www-data:www-data /var/www/html/wordpress
+sudo chmod -R 755 /var/www/html/wordpress
+sudo find /var/www/html/wordpress -type f -exec chmod 664 {} +
+	CÂU HÌNH MÁY CH? HTTP APACHE2
+sudo nano /etc/apache2/sites-available/wordpress.conf
+sudo a2ensite wordpress.conf
+sudo a2enmod rewrite
+	kh?i dông lai apache
+sudo systemctl restart apache2.service
+	TAO WP-CONFIG.PHP C?A WP
+sudo mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php
+sudo nano /var/www/html/wordpress/wp-config.php
+	TÍCH H?P PHP VA MYSQL
+sudo apt-get -y install php7.2-mysql
+sudo apt-get install php-pear php7.2-curl php7.2-dev php7.2-gd php7.2-mbstring php7.2-zip php7.2-mysql php7.2-xml
+	RESET LAI APACHE
+sudo service apache2 restart
